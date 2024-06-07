@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro de Usuário</title>
+    <style>
+        body{
+            background-color: black;
+        }
+        form {
+            max-width: 500px;
+            margin: auto;
+            padding: 1em;
+            border: 1px solid #08d2fa;
+            border-radius: 1em;
+        }
+        div {
+            margin-bottom: 1em;
+            margin: auto;
+            padding: auto;
+        }
+        label {
+            margin-bottom: .5em;
+            color: rgb(250, 247, 247);
+        }
+        input, select {
+            border: 0.5px solid #07d7f2;
+            padding: .5em;
+            font-size: 1em;
+            width: 95%;
+            margin: auto;
+            color: #07d7f2;
+        }
+        button {
+            padding: 0.7em;
+            color: #fff;
+            background-color: #007BFF;
+            border: none;
+            border-radius: 0.3em;
+            cursor: pointer;
+            margin-left: 41%;
+            
+        }
+        button:disabled {
+            background-color: #CCC;
+        }
+        .error {
+            color: red;
+        }
+        .success {
+            color: green;
+        }
+        .final{
+            background-color: aqua;
+            border-radius: 5px solid;
+        }
+        #chek{
+            border: 1px solid rgb(8, 168, 242);
+         font-weight: bold;   
+        }
+        #feminino{
+            color: rgb(247, 0, 169);
+        }
+        #masculino{
+            color: rgb(43, 3, 143);
+        }
+        #terms{
+            color: #07d7f2;
+            border-bottom: #07d7f2 50px;
+            cursor: pointer;
+        }
+        #gender{
+            width: auto;
+        }
+        #termos1{
+            margin-left: 27%;
+        }
+    </style>
+</head>
+<body>
+    <form id="registerForm">
+        <div>
+            <label for="fullName">Nome completo:</label>
+            <input type="text" id="fullName" name="fullName" required>
+        </div>
+        <div>
+            <label for="email">E-mail:</label>
+            <input type="email" id="email" name="email" required>
+        </div>
+        <div>
+            <label for="password">Senha:</label>
+            <input type="password" id="password" name="password" required>
+        </div>
+        <div>
+            <label for="confirmPassword">Confirmação de senha:</label>
+            <input type="password" id="confirmPassword" name="confirmPassword" required>
+        </div>
+        <div>
+            <label for="CPF"> Seu CPF:</label>
+            <input type="text" id="CPF" name="CPF" required>
+        </div>
+        <div>
+            <label for="dob">Data de nascimento:</label>
+            <input type="date" id="dob" name="dob" required>
+        </div>
+        <div>
+            <label for="gender">Gênero:</label>
+            <select id="gender" name="gender" required>
+                <option id="masculino" value="masculino">Masculino</option>
+                <option id="feminino" value="feminino">Feminino</option>
+                <option value="outros">Outros</option>
+            </select>
+        </div>
+        <div id="chek">
+            <input type="checkbox" id="terms" name="terms" required>
+            <label id="termos1" for="terms">Aceito os termos e condições</label>
+        </div>
+        <form id="final">
+        <button type="submit" >Enviar</button>
+        <div id="message"></div>
+        </form>
+    </form>
+
+    <script>
+        document.getElementById('registerForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            
+            var fullName = document.getElementById('fullName').value;
+            var email = document.getElementById('email').value;
+            var password = document.getElementById('password').value;
+            var confirmPassword = document.getElementById('confirmPassword').value;
+            var dob = document.getElementById('dob').value;
+            var gender = document.getElementById('gender').value;
+            var terms = document.getElementById('terms').checked;
+            var message = document.getElementById('message');
+
+            message.innerHTML = '';
+
+            if (password !== confirmPassword) {
+                message.innerHTML = '<p class="error">A senha e a confirmação de senha não coincidem.</p>';
+                return;
+            }
+
+            if (!terms) {
+                message.innerHTML = '<p class="error">Você deve aceitar os termos e condições.</p>';
+                return;
+            }
+            else{
+                alert('sucesso')
+            }
+
+            // Exibir mensagem de sucesso
+            message.innerHTML = '<p class="success">Cadastro realizado com sucesso!</p>';
+        
+        });
+    </script>
+</body>
+</html>
